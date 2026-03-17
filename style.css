@@ -1,0 +1,168 @@
+:root {
+    --primary: #ffcc00; /* 警告黃 */
+    --accent: #ff3300;  /* 危險紅 */
+    --bg-dark: #0a0a0c;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    overflow: hidden; /* 防止視窗捲動 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* 直立式塔機關風格 */
+    height: 100vh;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* UI 覆蓋層 */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 預設不攔截事件，除非按鈕可見 */
+}
+
+/* 頂部 HUD */
+#hud {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.stat-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box .label {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+.stat-box span:not(.label) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* 疊層背景 (選單/結束畫面) */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+/* 主選單標題 */
+.game-title {
+    font-size: 3.5rem;
+    text-align: center;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+}
+
+.highlight {
+    color: var(--primary);
+    font-style: italic;
+}
+
+/* 控制提示 */
+.controls-hint {
+    margin: 30px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.key {
+    background: #333;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border-bottom: 3px solid #000;
+    font-size: 0.9rem;
+}
+
+/* 玻璃質感按鈕 */
+.glass-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.glass-btn:hover {
+    background: var(--primary);
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* 遊戲結束統計項目 */
+.final-stats {
+    margin: 30px 0;
+    width: 60%;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+#game-over .status-title {
+    color: var(--accent);
+    font-size: 2.5rem;
+}

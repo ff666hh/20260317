@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Ball Trap - 極速下墜</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- 遊戲主畫布 -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI 疊層 -->
+        <div id="ui-layer">
+            <!-- 頂部資訊欄 -->
+            <div id="hud">
+                <div class="stat-box">
+                    <span class="label">SCORE</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">DEPTH</span>
+                    <span id="depth">0m</span>
+                </div>
+            </div>
+
+            <!-- 主選單 -->
+            <div id="main-menu" class="overlay active">
+                <h1 class="game-title">FALLING BALL<br><span class="highlight">TRAP</span></h1>
+                <p class="description">避開陷阱，挑戰最深極限</p>
+                <div class="controls-hint">
+                    <div class="key">A / ←</div>
+                    <div class="key">D / →</div>
+                    <span>控制移動</span>
+                    <div class="key" style="margin-left: 10px;">Space</div>
+                    <span>衝刺加速</span>
+                </div>
+                <button id="start-btn" class="glass-btn">開始挑戰</button>
+            </div>
+
+            <!-- 遊戲結束畫面 -->
+            <div id="game-over" class="overlay">
+                <h2 class="status-title">任務失敗</h2>
+                <div class="final-stats">
+                    <div class="stat-item">
+                        <span>最終分數</span>
+                        <span id="final-score">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>抵達深度</span>
+                        <span id="final-depth">0m</span>
+                    </div>
+                </div>
+                <button id="retry-btn" class="glass-btn">再試一次</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 腳本載入 -->
+    <script src="js/physics.js"></script>
+    <script src="js/traps.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
